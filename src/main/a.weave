@@ -1,0 +1,11 @@
+aspect {
+  pointcut: call(Println)
+  imports (
+    "fmt"
+  )
+  advice: {
+	before: {
+    	fmt.Println("before Println")
+  	}
+  }
+}
