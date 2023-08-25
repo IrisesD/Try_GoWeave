@@ -494,4 +494,4 @@ func (w *Weave) Run() {
 	w.build()
 }
 ```
-if we comment the `w.build()`, then the project will not be built and the ICUT code can be maintained.
+if we comment the `w.build()`, then the project will not be built and the ICUT code can be maintained under the src/ folder.
