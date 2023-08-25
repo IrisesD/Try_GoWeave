@@ -1,4 +1,4 @@
-## goweave usage
+## goweave docs
 
 ### features
 
@@ -444,3 +444,54 @@ Then in the loop of `for x := 0; x < len(fn.Body.List); x++`, goweave searches f
 If the name matches, goweave uses`begin := fset.Position(as.Pos()).Line - 1` and `after := fset.Position(as.End()).Line + 1` to get where to instrument.
 Then it will instrument the advice to that position.
 This is how goweave works.
+
+### Usage
+first clone the goweave repo:
+```shell
+git clone https://github.com/deferpanic/goweave.git
+```
+then revise the main.go to
+```Go
+package main
+
+import (
+	"log"
+	"./weave"
+)
+
+const (
+	version = "v0.1"
+)
+
+// main is the main point of entry for running goweave
+func main() {
+	log.Println("goweave " + version)
+
+	w := weave.NewWeave()
+	w.Run()
+
+}
+```
+use `go build -o gow` to build goweave and then move the executable `gow` to the project we want to instrument.
+
+then we can use `./gow` instead of `go build` in the project.
+
+**notes**:
+the goweave will delete the ICUT after build the project, if we want to see what the code looks like after instrumentation, we can enter weave.go, there's a function named `Run`:
+```Go
+func (w *Weave) Run() {
+	w.prep()
+	w.loadAspects()
+
+	// old regex parsing
+	// only used for go routines currently
+	// soon to be DEPRECATED
+	w.transform()
+
+	// applys around advice && evals execution joinpoints
+	filepath.Walk(w.buildLocation, w.VisitFile)
+
+	w.build()
+}
+```
+if we comment the `w.build()`, then the project will not be built and the ICUT code can be maintained.
