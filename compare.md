@@ -107,3 +107,18 @@ aspect {
 ```
 then it will raise an error since this hasn't been implemented.
 
+* GoWeave now doesn't support struct method name like
+```Go
+call(a.f())
+```
+instead, it can use
+```Go
+call(f())
+```
+However, this may not be what we want since it may instrument extra codes if there's two structs have the same function name called `f()`.
+
+Also it doesn't support partial match method name like
+```Go
+call(b.*)
+```
+
