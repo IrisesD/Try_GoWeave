@@ -122,3 +122,13 @@ Also it doesn't support partial match method name like
 call(b.*)
 ```
 
+* GoWeave does not support annotations like AspectJ. But as the author of GoWeave said:
+```
+NO CODE MODIFICATIONS - my main use cases involve not modifying code so that is why we initially did not support annotations - I'm not opposed to adding these but that's not my intended goal
+```
+They are not intended to support annotations since it will need to modify the code.
+
+* GoWeave is much slower than AspectJ.
+Because of the fact that GoWeave does instrumentation on source code level, so it needs to do a lot of I/O (read and write file), so the speed of instrumentation is much slower than AspectJ, which could do byte-code level instrumentation.
+
+However, I think this overhead cannot be avoid since it's source-code instrumentation's own disadvantage, we can optimize it but the overhead will still be here.
