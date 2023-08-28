@@ -133,7 +133,7 @@ Because of the fact that GoWeave does instrumentation on source code level, so i
 
 However, I think this overhead cannot be avoid since it's source-code instrumentation's own disadvantage, we can optimize it but the overhead will still be here.
 
-* **GoWeave does not have a pointcut support for the arguments matching.**
+* **GoWeave does not have a pointcut support for the return type matching.**
 For example, in AspectJ we can have this form of pointcut:
 ```Java
 call(int f(..))
