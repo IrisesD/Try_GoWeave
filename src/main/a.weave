@@ -1,11 +1,11 @@
 aspect {
-  pointcut: declaration(ch)
+  pointcut: execute(Println)
   imports (
     "fmt"
   )
   advice: {
 	before: {
-    	fmt.Println("before declaration of ch")
+    	fmt.Println("in Println")
   	}
   }
 }

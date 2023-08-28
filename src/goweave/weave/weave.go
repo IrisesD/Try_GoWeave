@@ -65,7 +65,7 @@ func (w *Weave) Run() {
 	// applys around advice && evals execution joinpoints
 	filepath.Walk(w.buildLocation, w.VisitFile)
 
-	// w.build()
+	w.build()
 
 }
 
