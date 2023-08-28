@@ -132,3 +132,11 @@ They are not intended to support annotations since it will need to modify the co
 Because of the fact that GoWeave does instrumentation on source code level, so it needs to do a lot of I/O (read and write file), so the speed of instrumentation is much slower than AspectJ, which could do byte-code level instrumentation.
 
 However, I think this overhead cannot be avoid since it's source-code instrumentation's own disadvantage, we can optimize it but the overhead will still be here.
+
+* GoWeave does not have a pointcut support for the arguments matching.
+For example, in AspectJ we can have this form of pointcut:
+```Java
+call(int f(..))
+```
+which means we want to get the pointcut where the function name is f and its return type is int.
+However, GoWeave now just supports the function name matching, we may need to implement this.
