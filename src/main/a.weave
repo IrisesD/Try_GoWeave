@@ -1,11 +1,11 @@
 aspect {
-  pointcut: execute(Println)
+  pointcut: get(A.num)
   imports (
     "fmt"
   )
   advice: {
 	before: {
-    	fmt.Println("in Println")
+    	fmt.Println("before get num")
   	}
   }
 }

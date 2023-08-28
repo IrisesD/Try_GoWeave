@@ -4,6 +4,15 @@ import (
 	"fmt"
 )
 
+type A struct {
+	num int
+}
+
+func (a A) f() {
+	fmt.Println(a.num)
+}
+
 func main() {
-	fmt.Println("Hello World!")
+	a := A{num: 10}
+	a.f()
 }

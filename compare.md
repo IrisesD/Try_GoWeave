@@ -68,3 +68,42 @@ Hello World!
 
 However, I think this feature is not so important, since in real scenario, we are not usually intended to revise the library function, since it may raise a lot of mistakes. The GoWeave can support the **call** pointcut of library functions, of which I think is enough.
 
+* GoWeave's GET/SET pointcuts seem to just support the local/global variables/functions, ignoring the class-variables. In this way, we should implement the support for class-variables/methods.
+For example:
+in the belowing CUT:
+```Go
+package main
+
+import (
+	"fmt"
+)
+
+type A struct {
+	num int
+}
+
+func (a A) f() {
+	fmt.Println(a.num)
+}
+
+func main() {
+	a := A{num: 10}
+	a.f()
+}
+```
+use
+```
+aspect {
+  pointcut: get(a.num) or get(A.num) or get(num)
+  imports (
+    "fmt"
+  )
+  advice: {
+	before: {
+    	fmt.Println("before get num")
+  	}
+  }
+}
+```
+then it will raise an error since this hasn't been implemented.
+
