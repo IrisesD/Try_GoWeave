@@ -4,7 +4,7 @@
 
 ### some features that AspectJ has but GoWeave don't have:
 
-* GoWeave cannot identify all the statements because it didn't implement all. For example, in declaration statements they use:
+* **GoWeave cannot identify all the statements because it didn't implement all. For example, in declaration statements they use**:
 ```Go
 if len(as.Rhs[0].(*ast.CallExpr).Args) == 2 {
 	_, k := (as.Rhs[0].(*ast.CallExpr).Args[0]).(*ast.ChanType)
@@ -33,7 +33,7 @@ or
 a := 2
 ```
 
-* GoWeave now can just **execute&within** support the instrumentation of user-defined function, if we want to do instrumentation on library function, it may not work. For example:
+* **GoWeave now can just **execute&within** support the instrumentation of user-defined function, if we want to do instrumentation on library function, it may not work. For example**:
 if we want to do instrumentation to the belowing CUT:
 ```Go
 package main
@@ -68,7 +68,7 @@ Hello World!
 
 However, I think this feature is not so important, since in real scenario, we are not usually intended to revise the library function, since it may raise a lot of mistakes. The GoWeave can support the **call** pointcut of library functions, of which I think is enough.
 
-* GoWeave's GET/SET pointcuts seem to just support the local/global variables/functions, ignoring the class-variables. In this way, we should implement the support for class-variables/methods.
+* **GoWeave's GET/SET pointcuts seem to just support the local/global variables/functions, ignoring the class-variables. In this way, we should implement the support for class-variables/methods.**
 For example:
 in the belowing CUT:
 ```Go
@@ -107,7 +107,7 @@ aspect {
 ```
 then it will raise an error since this hasn't been implemented.
 
-* GoWeave now doesn't support struct method name like
+* **GoWeave now doesn't support struct method name like**
 ```Go
 call(a.f())
 ```
@@ -122,18 +122,18 @@ Also it doesn't support partial match method name like
 call(b.*)
 ```
 
-* GoWeave does not support annotations like AspectJ. But as the author of GoWeave said:
+* **GoWeave does not support annotations like AspectJ. But as the author of GoWeave said:**
 ```
 NO CODE MODIFICATIONS - my main use cases involve not modifying code so that is why we initially did not support annotations - I'm not opposed to adding these but that's not my intended goal
 ```
 They are not intended to support annotations since it will need to modify the code.
 
-* GoWeave is much slower than AspectJ.
+* **GoWeave is much slower than AspectJ.**
 Because of the fact that GoWeave does instrumentation on source code level, so it needs to do a lot of I/O (read and write file), so the speed of instrumentation is much slower than AspectJ, which could do byte-code level instrumentation.
 
 However, I think this overhead cannot be avoid since it's source-code instrumentation's own disadvantage, we can optimize it but the overhead will still be here.
 
-* GoWeave does not have a pointcut support for the arguments matching.
+* **GoWeave does not have a pointcut support for the arguments matching.**
 For example, in AspectJ we can have this form of pointcut:
 ```Java
 call(int f(..))
